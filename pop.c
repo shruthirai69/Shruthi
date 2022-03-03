@@ -1,14 +1,12 @@
 #include<stdio.h>
 #include<ctype.h>
-char postfix[80],stack[30];
+#include<stdlib.h>
+#include<math.h>
+char stack[30],postfix[30];
 int top=-1;
 void push(char);
-int evalpostfix();
-void main()
-{
-printf("Enter the postfix");
-scanf('%s",postfix);
-gets(postfix);
+char pop();
+int evalpost();
 void push(char symbol)
 {
 stack[++top]=symbol;
@@ -18,32 +16,55 @@ char pop()
 char symbol;
 symbol=stack[top--];
 return symbol;
-int evalpostfix()
+}
+int evalpost()
 {
 char symbol;
-int i=0.op1,op2;
-while(symbol=postfix[i++]!='\0')
+int i=0,op1,op2;
+while((symbol=postfix[i++])!='\0')
 {
-if(symbol==operand)
-push(symbol -'0');
+if(isalnum(symbol))
+push(symbol-'0');
 else
 {
-op2=pop;
-}
-}
+op2=pop();
 op1=pop();
-swithc(symol)
+switch(symbol)
 {
-case +: push(op1+op2);
-break;
-case -: push(op1-op2);
-break;
-case *: push(op1*op2);
-break;
-case /: push(op1/op2);
-break;
-case ^: push(op1^op2);
-break;
-return(pop);
+case '+':push(op1+op2);
+          break;
+case '-':push(op1-op2);
+          break;
+case '*':push(op1*op2);
+          break;
+case '/':if(op2!=0)
+           {
+         push(op1/op2);
+            break;    
+             }
+          else
+          {
+           printf("out loop");
+            return 0;
+                 }
+case '^': push(pow(op1,op2));
+           break;
 }
+}}
+return(pop());
+}
+void main()
+{ 
+int val;
+printf("enter postfix expression");
+scanf("%s",postfix);
+val=evalpost();
+printf("evaluated expression:%d\n",val);
+
+}
+
+
+
+
+
 
