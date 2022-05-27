@@ -14,14 +14,14 @@ void dfs(int source) {
 	for (int w = 0; w < number; w++) {
 		if (visited[w] == 0 && array[source][w] == 1) 
 			dfs(w);
-		/*else {
+		else {
 			if (array[source][w] == 0)
 				total++;	
 			if (total == number) {
 				printf("Graph is disconnected\n");
 				exit(0);		
 			}		
-		}*/
+		}
 		
 	}
 	printf("%d--", source);		  
