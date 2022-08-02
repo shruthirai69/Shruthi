@@ -1,0 +1,89 @@
+4. select count(Authorid)from Book group by Authorid;
++-----------------+
+| count(Authorid) |
++-----------------+
+|               1 |
+|               1 |
+|               1 |
+|               1 |
+|               1 |
++-----------------+
+5 rows in set (0.01 sec)
+
+
+or
+
+select Author.authorname,count(*)from Author,Book where Author.Authorid=Book.Authorid group by Author.Authorid;
++-------------------+----------+
+| authorname        | count(*) |
++-------------------+----------+
+| Ramez Elmasri     |        1 |
+| Baidyanath Mishra |        1 |
+| Ellis Horowitz    |        1 |
+| Yunus             |        1 |
+| Deepak Kehamani   |        1 |
++-------------------+----------+
+5 rows in set (0.01 sec)
+
+
+5. select Student.* from Student,Borrow where Student.USN=Borrow.USN group by Borrow.USN having count(Borrow.USN)>1;
++------------+---------+---------+----------+-----+
+| USN        | name    | Address | Branchid | sem |
++------------+---------+---------+----------+-----+
+| 4VP21MC045 | Shruthi | Puttur  | b2       | 2   |
++------------+---------+---------+----------+-----+
+1 row in set (0.00 sec)
+
+6)select * from Student where exists(select Borrow.USN from Borrow, Book where Borrow.Bookid=Book.Bookid and Borrow.USN=Student.USN group by USN
+having count(distinct Authorid)>1);
++------------+---------+---------+----------+-----+
+| USN        | name    | Address | Branchid | sem |
++------------+---------+---------+----------+-----+
+| 4VP21MC033 | Rashmi  | Puttur  | b1       | 2   |
+| 4VP21MC045 | Shruthi | Puttur  | b2       | 2   |
++------------+---------+---------+----------+-----+
+2 rows in set (0.00 sec)
+
+
+
+
+2.  create table Student(USN varchar(20) Primary key not null,Name varchar(20) not null,DOB date not null,Branch varchar(20)not null,M1 int(3),M2 int(3),M3 int(3),Total int(3),GPA decimal(3,2));
+Query OK, 0 rows affected, 4 warnings (0.03 sec)
+
+mysql> desc Student;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| USN    | varchar(20)  | NO   | PRI | NULL    |       |
+| Name   | varchar(20)  | NO   |     | NULL    |       |
+| DOB    | date         | NO   |     | NULL    |       |
+| Branch | varchar(20)  | NO   |     | NULL    |       |
+| M1     | int          | YES  |     | NULL    |       |
+| M2     | int          | YES  |     | NULL    |       |
+| M3     | int          | YES  |     | NULL    |       |
+| Total  | int          | YES  |     | NULL    |       |
+| GPA    | decimal(3,2) | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+9 rows in set (0.00 sec)
+
+insert into Student(USN,Name,DOB,Branch) values("4VP21MC041","Shruthi","2001-02-01","MCA");
+ select * from Student;
++------------+-------------+------------+--------+------+------+------+-------+------+
+| USN        | Name        | DOB        | Branch | M1   | M2   | M3   | Total | GPA  |
++------------+-------------+------------+--------+------+------+------+-------+------+
+| 4VP21MC040 | Sandhya     | 2000-02-01 | MBA    | NULL | NULL | NULL |  NULL | NULL |
+| 4VP21MC041 | Shruthi     | 2001-02-01 | MCA    | NULL | NULL | NULL |  NULL | NULL |
+| 4VP21MC042 | Rashmi      | 2002-02-01 | CIVIL  | NULL | NULL | NULL |  NULL | NULL |
+| 4VP21MC043 | Geethanjali | 2003-02-01 | CS     | NULL | NULL | NULL |  NULL | NULL |
+| 4VP21MC044 | Puneethraj  | 2004-02-01 | Mech   | NULL | NULL | NULL |  NULL | NULL |
++------------+-------------+------------+--------+------+------+------+-------+------+
+5 rows in set (0.00 sec)
+
+
+ select name from Student where year(DOB)=2000;
++---------+
+| name    |
++---------+
+| Sandhya |
++---------+
+1 row in set (0.00 sec)
