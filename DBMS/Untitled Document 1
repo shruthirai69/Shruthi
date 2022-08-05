@@ -1,0 +1,106 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| VP21MC045_College  |
+| VP21MC045_Sports   |
+| information_schema |
++--------------------+
+3 rows in set (0.00 sec)
+
+mysql> use VP21MC045_Sports;
+Database changed
+mysql> create table Team(TID varchar(20)Primary key not null, TNAME varchar(20)NOT NULL, COACH varchar(20)NOT NULL,CAPTAIN_ID varchar(20)NOT NULL,CITY varchar(20) NOT NULL);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc Team;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| TID        | varchar(20) | NO   | PRI | NULL    |       |
+| TNAME      | varchar(20) | NO   |     | NULL    |       |
+| COACH      | varchar(20) | NO   |     | NULL    |       |
+| CAPTAIN_ID | varchar(20) | NO   |     | NULL    |       |
+| CITY       | varchar(20) | NO   |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+
+
+
+create table Player(PID varchar(20) Primary key not null, PNAME varchar(20)not null,AGE varchar(20)not null,TID varchar(20),foreign key(TID) references Team(TID));
+
+
+mysql> desc Player;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| PID   | varchar(20) | NO   | PRI | NULL    |       |
+| PNAME | varchar(20) | NO   |     | NULL    |       |
+| AGE   | varchar(20) | NO   |     | NULL    |       |
+| TID   | varchar(20) | YES  | MUL | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+
+
+
+
+
+create table Stadium(SID varchar(20) Primary key not null,SNAMR varchar(20)not null,PINCODE int(20)not null,CITY varchar(20)not null,AREA varchar(20)NOT NULL);
+
+mysql> desc Stadium;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| SID     | varchar(20) | NO   | PRI | NULL    |       |
+| SNAMR   | varchar(20) | NO   |     | NULL    |       |
+| PINCODE | int         | NO   |     | NULL    |       |
+| CITY    | varchar(20) | NO   |     | NULL    |       |
+| AREA    | varchar(20) | NO   |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+
+
+create table Matches(MID varchar(20)Not null,MDATE date,TIME time,SID varchar(20),foreign key(SID) references Stadium(SID), TEAM1_ID varchar(20),foreign key(TEAM1_ID)references Team(TID),TEAM2_ID varchar(20), foreign key(TEAM2_ID) references Team(TID),WINNING_TEAM_ID varchar(20),foreign key(WINNING_TEAM_ID) references Team(TID),MAN_OF_MATCH varchar(20),foreign key(MAN_OF_MATCH)references Player(PID));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc Matches;
++-----------------+-------------+------+-----+---------+-------+
+| Field           | Type        | Null | Key | Default | Extra |
++-----------------+-------------+------+-----+---------+-------+
+| MID             | varchar(20) | NO   |     | NULL    |       |
+| MDATE           | date        | YES  |     | NULL    |       |
+| TIME            | time        | YES  |     | NULL    |       |
+| SID             | varchar(20) | YES  | MUL | NULL    |       |
+| TEAM1_ID        | varchar(20) | YES  | MUL | NULL    |       |
+| TEAM2_ID        | varchar(20) | YES  | MUL | NULL    |       |
+| WINNING_TEAM_ID | varchar(20) | YES  | MUL | NULL    |       |
+| MAN_OF_MATCH    | varchar(20) | YES  | MUL | NULL    |       |
++-----------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+create table Player_phone(PID varchar(20),foreign key(PID) references Player(PID),PHONE varchar(20)primary key not null);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc Player_phone;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| PID   | varchar(20) | YES  | MUL | NULL    |       |
+| PHONE | varchar(20) | NO   | PRI | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
