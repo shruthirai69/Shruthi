@@ -3,60 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
     <title>Document</title>
     <script>
-        function p(){
-            
-            var pb=document.getElementById("stdp");
-            var count=0,i;
-            var text=document.getElementsByName('std');
-            for(i=0;i<text.length;i++)
-            {
-                if(text[i].validity.valid)
-                {
-                    count++
-                }
-            }
-            pb.value=count*(100/text.length)
+       
+       function add_progress(id) {
 
-        }
+        if(document.getElementById(id).checked)
+        {
+        document.getElementById("xyz").value+=25;
+    }
+        else{
+    document.getElementById("xyz").value-=25;
+    }
+
+//Checking Wheather the progress bar reached 100%
+       // if(document.getElementById("xyz").value === 100){
+       // document.getElementById("comp").innerHTML="Completed!!!";
+//}
+//else{
+        //document.getElementById("comp").innerHTML=""
+//}
+}
+
     </script>
-    
 </head>
 <body>
-    <form>
-        <label><b> Name of the student</b></label>
-        <input type="text" placeholder="Enter name"name="std" required onchange="p()"><br><br>
-
-        <label><b>Email</b></label>
-        <input type=  "email" name="std" required onchange="p()"><br><br>
-
-        <label><b>Gender</b></label><br>
-        <input type="radio"name="Male"id="Male" name="std" onchange="p()">
-        <label>Male</label><br>
-        <input type="radio"name="Male"id="Female">
-        <label>Female</label><br><br>
-
-        <label><b>DOB</b></label>
-        <input type="date" name="std" required onchange="p()"><br><br>
-
-        <label><b>Mobile number</b></label>
-        <input type="number" patter="[0-9]" name="std"required onchange="p()"><br><br>
-
-        <label><b>Select class </b></label><br><br>
-        <select name="class" name="std"onchange="p()">
-        <option value="MCA">MCA</option>
-        <option value="MBA">MBA</option>
-        <option value="Civil engineering">Civil engineering</option>
-        </select><br><br>
-
-        <button name="submit" value="submit"><b>SUBMIT</b></button>
-        <button type="Reset" value="Reset"><b>RESET</b></button>
-
-</form>
-    <h1 onclick="p()">Page slidebar</h1>
-    <progress value="0" max="100" id="stdp"></progress>
-    <!--video src="vedio.mp4" autoplay controls></video-->
+    <video src="../1.mp4" width="300px" height="300px"  autoplay controls></video>
+    <h1>List of activities</h1>
+    <label>writing web assignment</label>
+    <input id="check1" type="checkbox" onclick="add_progress(id)">
+    <br>
+    <label>washing clothes</label>
+    <input id="check2" type="checkbox" onclick="add_progress(id)">
+    <br>
+    <label>Project desing</label>
+    <input id="check3" type="checkbox" onclick="add_progress(id)">
+    <br>
+    <label>Project desing</label>
+    <input id="check4" type="checkbox" onclick="add_progress(id)">
+    <br>
+ 
+   <progress id="xyz" value="0" max="100" style="width:250px"></progress>
+  
 </body>
 </html>

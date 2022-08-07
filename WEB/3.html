@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         function fib()
+    {
+      var n=parseInt(prompt("Enter the number of fibonacci"));
+      var f1 = 0, f2 = 1, f3;
+      document.write("<h2>fibonacci sequence</h>")
+        if(n==0){
+
+        document.write("Enter number greater than 0");
+      }
+      if(n==1)
+      {
+          document.write(f1)
+      }
+      else if(n==2)
+      {
+          document.write(f1 + " " + f2);
+
+      }
+      else{
+        document.write(f1 + " " + f2);
+        for(var i = 0;i< n-2;i++){
+          f3=f1+f2;
+          document.write(" " + f3);
+          f1 = f2;
+          f2 = f3
+
+        }
+      }
+
+    }
+    function firstn()
+    {
+      var n=parseInt(prompt("Enter the limit"));
+      var string="";
+      for(var i=1;i<n;i++)
+      {
+        string=string +i+"======="+i*i+"\n"
+
+      }
+      alert(string);
+    }
+    </script>
+   <h2 onclick="fib()">Finonacci</h2>
+   <h2 onclick="firstn()">Firstnumber</h2>
+</body>
+</html>
