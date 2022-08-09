@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit</title>
+    <style>
+        form{
+        border:solid red; 
+        background-color: aquamarine;
+        width: 500px;
+        height: 200px;
+        border-radius: 4%;
+        padding-top: 5%;
+        padding-left:10% ;
+        padding-bottom: 5%;
+    }
+    </style>
+    <script>
+        var total_amt=0
+        function apple(){
+            var apple_qty=document.getElementById("apple_count").value
+            var apple_amt=apple_qty*59
+            if(document.getElementById("apple_check"))
+                total_amt+=apple_amt
+            else
+                total_amt-=apple_amt
+        }
+        function orange(){
+            var orange_qty=document.getElementById("orange_count").value
+            var orange_amt=orange_qty*49
+            if(document.getElementById("orange_check"))
+                total_amt+=orange_amt
+            else
+                total_amt-=orange_amt
+        }
+        function banana(){
+            var banana_qty=document.getElementById("banana_count").value
+            var banana_amt=banana_qty*39
+            if(document.getElementById("banana_check"))
+                total_amt+=banana_amt
+            else
+                total_amt-=banana_amt
+        }
+        function final_amt(){
+            total_amt+=total_amt*0.05
+            alert("Your total cost is=$"+total_amt)
+            return false
+        }
+    </script>
+</head>
+<body style="padding: 150px;"><center>
+    <form action="">
+        &emsp;<label><b>Fruit name</b></label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<label><b>Quantity</b></label><br><br>
+        <label>Apple (59 cents)</label>&ensp;&emsp;&emsp;&emsp;&emsp;<input type="number" id="apple_count" min="1">
+        <input type="checkbox" id="apple_check" onclick="apple();"><br><br>
+        <label>Orange (49 cents)</label>&emsp;&emsp;&emsp;&emsp;<input type="number" id="orange_count" min="1">
+        <input type="checkbox" id="orange_check" onclick="orange();"><br><br>
+        <label>Banana (39 cents)</label>&emsp;&emsp;&emsp;&emsp;<input type="number" id="banana_count" min="1">
+        <input type="checkbox" id="banana_check" onclick="banana();"><br><br>
+        <input type="submit" value="Submit" onclick="return final_amt()">
+    </form>
+</center>
+</body>
+</html>

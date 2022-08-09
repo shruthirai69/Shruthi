@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit</title>
+    <script>
+        var total_amt=0,apple_amt=0,orange_amt=0,banana_amt=0
+        function apple(){
+            apple_amt+=59
+            if(document.getElementById("apple_check"))
+                total_amt+=apple_amt
+            else
+                total_amt-=apple_amt
+        }
+        function orange(){
+            orange_amt+=49
+            if(document.getElementById("orange_check"))
+                total_amt+=orange_amt
+            else
+                total_amt-=orange_amt
+        }
+        function banana(){
+            banana_amt+=39
+            if(document.getElementById("banana_check"))
+                total_amt+=banana_amt
+            else
+                total_amt-=banana_amt
+        }
+        function final_amt(){
+            total_amt+=total_amt*0.05
+            alert("Your total cost is=$"+total_amt)
+            return false
+        }
+    </script>
+</head>
+<body>
+    <form action="" style="padding: 150px; ">
+        <label><b>Fruit name</b></label>&emsp;&emsp;<label><b>Click</b></label><br><br>
+        <label>Apple (59 cents)</label>&ensp;&emsp;&emsp;&emsp;&emsp;
+        <input type="checkbox" id="apple_check" onclick="apple();"><br><br>
+        <label>Orange (49 cents)</label>&emsp;&emsp;&emsp;&emsp;
+        <input type="checkbox" id="orange_check" onclick="orange();"><br><br>
+        <label>Banana (39 cents)</label>&emsp;&emsp;&emsp;&emsp;
+        <input type="checkbox" id="banana_check" onclick="banana();"><br><br>
+        <input type="submit" value="Submit" onclick="return final_amt()">
+    </form>
+</body>
+</html>
